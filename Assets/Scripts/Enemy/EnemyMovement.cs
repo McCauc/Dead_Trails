@@ -45,7 +45,27 @@ public class EnemyMovement : MonoBehaviour
         animator.SetBool("IsMoving", false);
         animator.SetTrigger("IsDead");
 
-        // ✔ SCORE ADDITION (safe null check)
+        // Shut down the EnemyAttack script component instantly so it stops ticking damage
+        EnemyAttack attackScript = GetComponent<EnemyAttack>();
+        if (attackScript != null)
+        {
+            attackScript.enabled = false;
+        }
+
+        // Turn off the physical physics collider completely so the player can walk over the body
+        Collider2D enemyCollider = GetComponent<Collider2D>();
+        if (enemyCollider != null)
+        {
+            enemyCollider.enabled = false;
+        }
+
+        // Grab the SpriteRenderer and push its visual rendering order underneath the player
+        SpriteRenderer enemySpriteRenderer = GetComponent<SpriteRenderer>();
+        if (enemySpriteRenderer != null)
+        {
+            enemySpriteRenderer.sortingOrder = -4; 
+        }
+
         if (ScoreController.Instance != null)
         {
             ScoreController.Instance.AddScore(10);

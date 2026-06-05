@@ -106,6 +106,16 @@ public class Health : MonoBehaviour
         }
 
         gameObject.layer = LayerMask.NameToLayer("Corpse");
+
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.sortingOrder = -5;
+        }
+
+        if (DeathMenuController.Instance != null)
+        {
+            DeathMenuController.Instance.TriggerDeathMenu();
+        }
     }
 
     public void DestroySelf()

@@ -12,9 +12,9 @@ TagManager:
   - 
   - Water
   - UI
+  - Corpse
   - Player
   - Enemy
-  - Corpse
   - 
   - 
   - 
@@ -42,12 +42,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Layer 1
+  - name: Ground
     uniqueID: 2425651459
     locked: 0
-  - name: Layer 2
+  - name: Corpse
+    uniqueID: 4088410929
+    locked: 0
+  - name: Enemy
     uniqueID: 4250941897
     locked: 0
-  - name: Layer 3
+  - name: Player
     uniqueID: 4189426099
     locked: 0

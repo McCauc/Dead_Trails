@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform shootPoint; // Where bullets spawn from
+    [SerializeField] private Transform shootPoint;
     [SerializeField] private float bulletSpeed = 10f;
     [SerializeField] private float shootCooldown = 0.2f;
 
@@ -34,24 +34,19 @@ public class PlayerShoot : MonoBehaviour
             return;
         }
 
-        // Spawn bullet at shoot point
         GameObject newBullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
         
-        // Get bullet's direction (facing direction of player)
-        Vector2 shootDirection = transform.right; // Shoots in the direction player faces
+        Vector2 shootDirection = transform.right;
         
-        // Rotate bullet to face shoot direction (add 90 for vertical capsule)
         float angle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg + 90f;
         newBullet.transform.rotation = Quaternion.Euler(0f, 0f, angle);
         
-        // Set bullet velocity
         Rigidbody2D bulletRb = newBullet.GetComponent<Rigidbody2D>();
         if (bulletRb != null)
         {
             bulletRb.velocity = shootDirection * bulletSpeed;
         }
 
-        // Add bullet script
         Bullet bulletScript = newBullet.GetComponent<Bullet>();
         if (bulletScript == null)
         {
