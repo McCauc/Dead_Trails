@@ -45,6 +45,12 @@ public class EnemyMovement : MonoBehaviour
         animator.SetBool("IsMoving", false);
         animator.SetTrigger("IsDead");
 
+        // ✔ SCORE ADDITION (safe null check)
+        if (ScoreController.Instance != null)
+        {
+            ScoreController.Instance.AddScore(10);
+        }
+
         enabled = false;
     }
 
